@@ -1,4 +1,4 @@
-package br.com.professorisidro.isilanguage.datastructures;
+package src.br.com.ufabc.isilanguage.datastructures;
 
 import java.util.ArrayList;
 import java.util.HashMap;
