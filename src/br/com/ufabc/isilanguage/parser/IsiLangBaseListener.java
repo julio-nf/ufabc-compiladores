@@ -11,6 +11,7 @@ package src.br.com.ufabc.isilanguage.parser;
 	import src.br.com.ufabc.isilanguage.ast.CommandEscrita;
 	import src.br.com.ufabc.isilanguage.ast.CommandAtribuicao;
 	import src.br.com.ufabc.isilanguage.ast.CommandDecisao;
+	import src.br.com.ufabc.isilanguage.ast.CommandEnquanto;
 	import java.util.ArrayList;
 	import java.util.Stack;
 
@@ -97,6 +98,18 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCmd(IsiLangParser.CmdContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCmdEnquanto(IsiLangParser.CmdEnquantoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmdEnquanto(IsiLangParser.CmdEnquantoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

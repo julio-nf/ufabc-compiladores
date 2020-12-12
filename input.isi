@@ -1,6 +1,6 @@
 programa
 
-  numero a, b;
+  numero a, b, c, d;
   texto  t1;
 
   leia(a);
@@ -15,6 +15,16 @@ programa
   senao {
      escreva (b);
   }
+
+  c=3
+  d=1
+
+  enquanto (c>d){
+    escreva (d);
+    d = d+1;
+  }
+
+
   
   
 
