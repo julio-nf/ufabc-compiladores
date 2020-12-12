@@ -1,4 +1,4 @@
-package br.com.professorisidro.isilanguage.datastructures;
+package src.br.com.ufabc.isilanguage.datastructures;
 
 public class IsiVariable extends IsiSymbol {
 	
