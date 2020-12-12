@@ -1,16 +1,17 @@
 grammar IsiLang;
 
 @header{
-	import br.com.professorisidro.isilanguage.datastructures.IsiSymbol;
-	import br.com.professorisidro.isilanguage.datastructures.IsiVariable;
-	import br.com.professorisidro.isilanguage.datastructures.IsiSymbolTable;
-	import br.com.professorisidro.isilanguage.exceptions.IsiSemanticException;
-	import br.com.professorisidro.isilanguage.ast.IsiProgram;
-	import br.com.professorisidro.isilanguage.ast.AbstractCommand;
-	import br.com.professorisidro.isilanguage.ast.CommandLeitura;
-	import br.com.professorisidro.isilanguage.ast.CommandEscrita;
-	import br.com.professorisidro.isilanguage.ast.CommandAtribuicao;
-	import br.com.professorisidro.isilanguage.ast.CommandDecisao;
+	import src.br.com.ufabc.isilanguage.datastructures.IsiSymbol;
+	import src.br.com.ufabc.isilanguage.datastructures.IsiVariable;
+	import src.br.com.ufabc.isilanguage.datastructures.IsiSymbolTable;
+	import src.br.com.ufabc.isilanguage.exceptions.IsiSemanticException;
+	import src.br.com.ufabc.isilanguage.ast.IsiProgram;
+	import src.br.com.ufabc.isilanguage.ast.AbstractCommand;
+	import src.br.com.ufabc.isilanguage.ast.CommandLeitura;
+	import src.br.com.ufabc.isilanguage.ast.CommandEscrita;
+	import src.br.com.ufabc.isilanguage.ast.CommandAtribuicao;
+	import src.br.com.ufabc.isilanguage.ast.CommandDecisao;
+	import src.br.com.ufabc.isilanguage.ast.CommandEnquanto;
 	import java.util.ArrayList;
 	import java.util.Stack;
 }
@@ -101,9 +102,28 @@ bloco	: { curThread = new ArrayList<AbstractCommand>();
 cmd		:  cmdleitura  
  		|  cmdescrita 
  		|  cmdattrib
- 		|  cmdselecao  
+ 		|  cmdselecao
+ 		|  cmdEnquanto
 		;
-		
+
+cmdEnquanto  :  'enquanto' AP
+                    ID    { _exprDecision = _input.LT(-1).getText(); }
+                    OPREL { _exprDecision += _input.LT(-1).getText(); }
+                    (ID | NUMBER) {_exprDecision += _input.LT(-1).getText(); }
+                    FP
+                    ACH
+                    { curThread = new ArrayList<AbstractCommand>();
+                      ArrayList<AbstractCommand> enquantoLista = new ArrayList<AbstractCommand>();
+                      stack.push(curThread);
+                    }
+                    (cmd)+
+                    FCH
+                    {
+                       enquantoLista = stack.pop();
+                       CommandEnquanto cmd = new CommandEnquanto(_exprDecision, enquantoLista);
+                       stack.peek().add(cmd);
+                    };
+
 cmdleitura	: 'leia' AP
                      ID { verificaID(_input.LT(-1).getText());
                      	  _readID = _input.LT(-1).getText();
@@ -115,8 +135,7 @@ cmdleitura	: 'leia' AP
               	IsiVariable var = (IsiVariable)symbolTable.get(_readID);
               	CommandLeitura cmd = new CommandLeitura(_readID, var);
               	stack.peek().add(cmd);
-              }   
-			;
+              };
 			
 cmdescrita	: 'escreva' 
                  AP 

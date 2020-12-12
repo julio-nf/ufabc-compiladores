@@ -11,6 +11,7 @@ package src.br.com.ufabc.isilanguage.parser;
 	import src.br.com.ufabc.isilanguage.ast.CommandEscrita;
 	import src.br.com.ufabc.isilanguage.ast.CommandAtribuicao;
 	import src.br.com.ufabc.isilanguage.ast.CommandDecisao;
+	import src.br.com.ufabc.isilanguage.ast.CommandEnquanto;
 	import java.util.ArrayList;
 	import java.util.Stack;
 
@@ -81,6 +82,16 @@ public interface IsiLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCmd(IsiLangParser.CmdContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#cmdEnquanto}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmdEnquanto(IsiLangParser.CmdEnquantoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#cmdEnquanto}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmdEnquanto(IsiLangParser.CmdEnquantoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#cmdleitura}.
 	 * @param ctx the parse tree
