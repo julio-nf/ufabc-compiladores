@@ -50,9 +50,10 @@ grammar IsiLang;
 	}
 }
 
-prog	: 'programa' decl bloco  'fimprog;'
-           {  program.setVarTable(symbolTable);
-           	  program.setComandos(stack.pop());
+prog	: 'programa' decl bloco 'fimprog;'
+           { 
+           	 program.setVarTable(symbolTable);
+           	 program.setComandos(stack.pop());
            	 
            } 
 		;
@@ -61,7 +62,7 @@ decl    :  (declaravar)+
         ;
         
         
-declaravar :  tipo ID  {
+declaravar :  'declare' tipo ID  {
 	                  _varName = _input.LT(-1).getText();
 	                  _varValue = null;
 	                  symbol = new IsiVariable(_varName, _tipo, _varValue);
