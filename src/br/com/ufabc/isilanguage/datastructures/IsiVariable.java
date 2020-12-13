@@ -38,10 +38,10 @@ public class IsiVariable extends IsiSymbol {
 	public String generateJavaCode() {
        String str;
        if (type == NUMBER) {
-    	   str = "double ";
+    	   str = "\tdouble ";
        }
        else {
-    	   str = "String ";
+    	   str = "\tString ";
        }
        return str + " "+super.name+";";
 	}

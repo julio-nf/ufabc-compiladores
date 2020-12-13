@@ -33,6 +33,6 @@ public class IsiSymbolTable {
 		return lista;
 	}
 
-	
+
 	
 }
