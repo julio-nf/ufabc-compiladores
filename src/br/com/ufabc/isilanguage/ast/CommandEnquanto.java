@@ -15,11 +15,11 @@ public class CommandEnquanto extends AbstractCommand {
     @Override
     public String generateJavaCode() {
         StringBuilder str = new StringBuilder();
-        str.append("while(").append(condition).append("){\n");
+        str.append("\twhile(").append(condition).append("){\n\t");
         for(AbstractCommand cmd: this.enquantoCommands){
             str.append(cmd.generateJavaCode());
         }
-        str.append("}");
+        str.append("\n\t}");
         return str.toString();
     }
 
