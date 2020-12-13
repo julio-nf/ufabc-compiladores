@@ -1,0 +1,9 @@
+programa
+
+  declare numero t1, t2;
+
+  t2=1;
+
+  escreva (t2);
+
+fimprog;
