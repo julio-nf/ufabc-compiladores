@@ -57,7 +57,7 @@ grammar IsiLang;
 	}
 
 	public boolean verificaInputNumeros(String input) {
-        return input.matches("[0-9]+");
+        return input.matches("[0-9()+\\-*/.]");
 	}
 	
 	public void verificaVarsNaoUtilizadas() {
@@ -192,10 +192,6 @@ cmdattrib	:  ID { verificaID(_input.LT(-1).getText());
                SC
                {
                	 IsiVariable var = (IsiVariable)symbolTable.get(_exprID);
-                 if (var.getType() == IsiVariable.NUMBER && !verificaInputNumeros(_exprContent)) {
-                    throw new IsiSemanticException
-                        ("Symbol " + _exprContent + " foi atribúido um valor incompatível com o tipo declarado.");
-                 }
               	 var.setValue(_exprContent);
                	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
                	 stack.peek().add(cmd);

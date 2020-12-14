@@ -1,7 +1,7 @@
 ## UFABC - Compiladores
 ### IsiLanguage
 
-Implementação da linguagem de programação imperativa *IsiLanguage*, pela aula de Compiladores da Universidade Federal do ABC, ministrada pelo professor *Francisco Isidro Massetto*.
+Implementacao da linguagem de programacão imperativa *IsiLanguage*, pela aula de Compiladores da Universidade Federal do ABC, ministrada pelo professor *Francisco Isidro Massetto*.
 
 Os códigos escritos em IsiLanguage são transpilados para C após a execução do compilador. A implementação da linguagem é feita com Java e Antlr4.
 

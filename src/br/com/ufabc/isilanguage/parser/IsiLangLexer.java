@@ -109,13 +109,13 @@ public class IsiLangLexer extends Lexer {
 		private ArrayList<AbstractCommand> listaTrue;
 		private ArrayList<AbstractCommand> listaFalse;
 		private ArrayList<String> listaNaoUsados;
-		
+
 		public void verificaID(String id) {
 			if (!symbolTable.exists(id)){
 				throw new IsiSemanticException("Symbol "+id+" not declared");
 			}
 		}
-		
+
 		public void exibeVariaveis(){
 			ArrayList<IsiSymbol> ls = symbolTable.getAll();
 			for(IsiSymbol s: ls)
@@ -131,7 +131,7 @@ public class IsiLangLexer extends Lexer {
 		}
 
 		public boolean verificaInputNumeros(String input) {
-	        return input.matches("[0-9]+");
+	        return input.matches("[0-9()+\\-*/.]");
 		}
 		
 		public void verificaVarsNaoUtilizadas() {
