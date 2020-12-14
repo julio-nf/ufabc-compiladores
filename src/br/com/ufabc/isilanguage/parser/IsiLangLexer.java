@@ -108,6 +108,7 @@ public class IsiLangLexer extends Lexer {
 		private String _exprDecision;
 		private ArrayList<AbstractCommand> listaTrue;
 		private ArrayList<AbstractCommand> listaFalse;
+		private ArrayList<String> listaNaoUsados;
 		
 		public void verificaID(String id){
 			if (!symbolTable.exists(id)){
@@ -130,7 +131,7 @@ public class IsiLangLexer extends Lexer {
 		{
 			_varName = varName; /*Captura o nome do identificador*/
 		    _varValue = null; /*Valor do identificador*/
-		    symbol = new IsiVariable(_varName, _tipo, _varValue); /*Criação de um novo e inclusão na tabela de símbolos*/
+		    symbol = new IsiVariable(_varName, _tipo, _varValue); /*Criaï¿½ï¿½o de um novo e inclusï¿½o na tabela de sï¿½mbolos*/
 		    if (!symbolTable.exists(_varName)){
 		     	symbolTable.add(symbol);	
 		    }	                
@@ -138,10 +139,24 @@ public class IsiLangLexer extends Lexer {
 		    	throw new IsiSemanticException("Symbol "+_varName+" already declared");
 		    }
 		}
-		
-		public void verificaVariavelNaoUtilizada()
-		{
-			
+	
+		public void checkUnusedVars() {
+			listaNaoUsados = new ArrayList<String>();
+	        for (IsiSymbol is : symbolTable.getAll()) {
+	        	IsiVariable isiVar = (IsiVariable)is;
+	            if (isiVar.getValue() == null) {
+	            	listaNaoUsados.add(isiVar.getName());
+	            }
+			}
+
+			if (listaNaoUsados.size() != 0) {
+	        	System.out.println("WARNING - As variÃ¡veis foram declaradas, mas nÃ£o foram utilizadas: "
+	        	    + String.join(", ", listaNaoUsados));
+			}
+		}
+
+		public void generateCode() {
+			program.generateTarget();
 		}
 
 

@@ -35,6 +35,8 @@ public class MainClass {
 
 		
 			parser.exibeComandos();
+
+			parser.checkUnusedVars();
 			
 			parser.generateCode();
 			
