@@ -1,14 +1,12 @@
 programa
 
-  declare numero a, b, c, d;
+  declare numero a, b, c, d, f;
   declare texto  t1;
 
+  b = 2.0;
   leia(a);
   leia(b);
 
-  b = 2;
-  
-  
   a = 1 + 2.0 * 3 / b;
   
 

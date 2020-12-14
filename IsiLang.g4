@@ -163,6 +163,8 @@ cmdleitura	: 'leia' AP
 
               {
               	IsiVariable var = (IsiVariable)symbolTable.get(_readID);
+              	var.setValue("");
+
               	CommandLeitura cmd = new CommandLeitura(_readID, var);
               	stack.peek().add(cmd);
               };
