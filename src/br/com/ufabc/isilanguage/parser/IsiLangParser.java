@@ -747,6 +747,10 @@ public class IsiLangParser extends Parser {
 			setState(102);
 			match(SC);
 
+			                  IsiVariable isiVar = (IsiVariable)symbolTable.get(_writeID);
+			                  if (isiVar.getValue() == null) {
+			                      throw new IsiSemanticException("Symbol " + _writeID + " não foi inicializado.");
+			                  }
 			               	  CommandEscrita cmd = new CommandEscrita(_writeID);
 			               	  stack.peek().add(cmd);
 			               

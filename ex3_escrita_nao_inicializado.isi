@@ -1,0 +1,10 @@
+programa
+
+  declare numero t1, t2;
+
+  t1=10;
+
+  escreva (t1);
+  escreva (t2);
+
+fimprog;
