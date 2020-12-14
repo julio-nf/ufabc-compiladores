@@ -40,7 +40,7 @@ public class MainClass {
 			
 			parser.exibeComandos();
 
-			parser.checkUnusedVars();
+			parser.verificaVarsNaoUtilizadas();
 			
 			parser.generateCode();
 			

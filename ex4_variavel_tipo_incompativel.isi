@@ -1,0 +1,8 @@
+programa
+
+  declare numero t1, t2;
+
+  t1=testandoStringEmNumero;
+  t2=15;
+
+fimprog;

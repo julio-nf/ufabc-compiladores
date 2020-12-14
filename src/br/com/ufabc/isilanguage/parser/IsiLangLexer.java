@@ -110,19 +110,23 @@ public class IsiLangLexer extends Lexer {
 		private ArrayList<AbstractCommand> listaFalse;
 		private ArrayList<String> listaNaoUsados;
 		
-		public void verificaID(String id){
+		public void verificaID(String id) {
 			if (!symbolTable.exists(id)){
 				throw new IsiSemanticException("Symbol "+id+" not declared");
 			}
 		}
 		
-		public void exibeComandos(){
+		public void exibeComandos() {
 			for (AbstractCommand c: program.getComandos()){
 				System.out.println(c);
 			}
 		}
+
+		public boolean verificaInputNumeros(String input) {
+	        return input.matches("[0-9]+");
+		}
 		
-		public void checkUnusedVars() {
+		public void verificaVarsNaoUtilizadas() {
 			listaNaoUsados = new ArrayList<String>();
 	        for (IsiSymbol is : symbolTable.getAll()) {
 	        	IsiVariable isiVar = (IsiVariable)is;
