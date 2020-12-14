@@ -124,7 +124,14 @@ public class IsiLangLexer extends Lexer {
 		public void generateCode(){
 			program.generateTarget();
 		}
-		
+
+		public boolean tipoNumerico(String id){
+		    IsiVariable var = (IsiVariable) symbolTable.get(id);
+		    if(symbolTable.exists(id) && var.getType() == IsiVariable.NUMBER){
+	            return true;
+	            }
+	            return false;
+		}
 		
 		public void verificaSimboloNaTabSimbolos(String varName)
 		{

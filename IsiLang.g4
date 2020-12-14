@@ -50,7 +50,14 @@ grammar IsiLang;
 	public void generateCode(){
 		program.generateTarget();
 	}
-	
+
+	public boolean tipoNumerico(String id){
+	    IsiVariable var = (IsiVariable) symbolTable.get(id);
+	    if(symbolTable.exists(id) && var.getType() == IsiVariable.NUMBER){
+            return true;
+            }
+            return false;
+	}
 	
 	public void verificaSimboloNaTabSimbolos(String varName)
 	{
@@ -208,6 +215,9 @@ termo		: ID { verificaID(_input.LT(-1).getText());
             | 
               NUMBER
               {
+              if(!tipoNumerico(_exprID)){
+              throw new IsiSemanticException("Symbol "+ _exprID+" não pode ser atribuido a numerico");
+              }
               	_exprContent += _input.LT(-1).getText();
               }
 			;

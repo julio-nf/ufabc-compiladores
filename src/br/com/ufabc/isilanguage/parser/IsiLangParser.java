@@ -131,7 +131,14 @@ public class IsiLangParser extends Parser {
 		public void generateCode(){
 			program.generateTarget();
 		}
-		
+
+		public boolean tipoNumerico(String id){
+		    IsiVariable var = (IsiVariable) symbolTable.get(id);
+		    if(symbolTable.exists(id) && var.getType() == IsiVariable.NUMBER){
+	            return true;
+	            }
+	            return false;
+		}
 		
 		public void verificaSimboloNaTabSimbolos(String varName)
 		{
@@ -1051,6 +1058,9 @@ public class IsiLangParser extends Parser {
 				setState(155);
 				match(NUMBER);
 
+				              if(tipoNumerico(_exprID)){
+				              throw new IsiSemanticException("Symbol "+ _exprID+" não pode ser atribuido a numerico");
+				              }
 				              	_exprContent += _input.LT(-1).getText();
 				              
 				}

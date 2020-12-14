@@ -9,6 +9,7 @@ public class MainClass{
 	double  b;
 	double  c;
 	double  d;
+	double  e;
 	String  t1;
 	a= _key.nextDouble();
 	b= _key.nextDouble();

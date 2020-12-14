@@ -1,13 +1,17 @@
 programa
 
-  declare numero a, b, c, d;
+  declare numero a, b, c, d, e;
   declare texto  t1;
 
   leia(a);
   leia(b);
-  
-  
+
+
   a = 1 + 2 * 3 / b;
+
+  se (b > t1){
+         escreva (a);
+  }
   
 
   se ( a > b ) {
@@ -26,6 +30,10 @@ programa
     escreva (d);
     d = d+1;
   }
+
+
+
+
 
 
   
