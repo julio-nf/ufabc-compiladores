@@ -32,7 +32,9 @@ public class IsiVariable extends IsiSymbol {
 
 	@Override
 	public String toString() {
-		return "IsiVariable [name=" + name + ", type=" + type + ", value=" + value + "]";
+		String tipoVariavel = this.type == NUMBER ? "numerico" : "texto";
+		String valorVariavel = this.value == null ? "Nenhum valor atribuido" : this.value;
+		return "Variavel: " + name + ", tipo = " + tipoVariavel + ", valor = " + valorVariavel ;
 	}
 	
 	public String generateJavaCode() {

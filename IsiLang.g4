@@ -42,6 +42,14 @@ grammar IsiLang;
 		}
 	}
 	
+	public void exibeVariaveis(){
+		ArrayList<IsiSymbol> ls = symbolTable.getAll();
+		for(IsiSymbol s: ls)
+		{
+			System.out.println(s);
+		}
+	}
+	
 	public void exibeComandos(){
 		for (AbstractCommand c: program.getComandos()){
 			System.out.print(c);
@@ -58,7 +66,7 @@ grammar IsiLang;
 		}
 
 		if (listaNaoUsados.size() != 0) {
-        	System.out.println("WARNING - As variáveis foram declaradas, mas não foram utilizadas: "
+        	System.out.println("\nWARNING - As variaveis foram declaradas, mas nao foram utilizadas: "
         	    + String.join(", ", listaNaoUsados));
 		}
 	}

@@ -33,7 +33,10 @@ public class MainClass {
 			System.out.println("*** Iniciando o processo de compilação... ***\n");
 			long tempoInicial = System.currentTimeMillis();
 
-		
+			parser.exibeVariaveis();
+			
+			System.out.println("\n--------------------------------------------------\n");
+			
 			parser.exibeComandos();
 
 			parser.checkUnusedVars();

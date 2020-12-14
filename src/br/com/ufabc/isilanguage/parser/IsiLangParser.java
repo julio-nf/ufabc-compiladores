@@ -123,13 +123,36 @@ public class IsiLangParser extends Parser {
 			}
 		}
 		
+		public void exibeVariaveis(){
+			ArrayList<IsiSymbol> ls = symbolTable.getAll();
+			for(IsiSymbol s: ls)
+			{
+				System.out.println(s);
+			}
+		}
+		
 		public void exibeComandos(){
 			for (AbstractCommand c: program.getComandos()){
 				System.out.print(c);
 			}
 		}
 		
-		public void generateCode(){
+		public void checkUnusedVars() {
+			listaNaoUsados = new ArrayList<String>();
+	        for (IsiSymbol is : symbolTable.getAll()) {
+	        	IsiVariable isiVar = (IsiVariable)is;
+	            if (isiVar.getValue() == null) {
+	            	listaNaoUsados.add(isiVar.getName());
+	            }
+			}
+
+			if (listaNaoUsados.size() != 0) {
+	        	System.out.println("\nWARNING - As variaveis foram declaradas, mas nao foram utilizadas: "
+	        	    + String.join(", ", listaNaoUsados));
+			}
+		}
+
+		public void generateCode() {
 			program.generateTarget();
 		}
 		
@@ -146,24 +169,10 @@ public class IsiLangParser extends Parser {
 		    	throw new IsiSemanticException("Symbol "+_varName+" already declared");
 		    }
 		}
-
-		public void checkUnusedVars() {
-			listaNaoUsados = new ArrayList<String>();
-	        for (IsiSymbol is : symbolTable.getAll()) {
-	        	IsiVariable isiVar = (IsiVariable)is;
-	            if (isiVar.getValue() == null) {
-	            	listaNaoUsados.add(isiVar.getName());
-	            }
-			}
-
-			if (listaNaoUsados.size() != 0) {
-	        	System.out.println("WARNING - As variáveis foram declaradas, mas não foram utilizadas: "
-	        	    + String.join(", ", listaNaoUsados));
-			}
-		}
-
-		public void generateCode() {
-			program.generateTarget();
+		
+		public void verificaVariavelNaoUtilizada()
+		{
+			
 		}
 
 	public IsiLangParser(TokenStream input) {
@@ -205,10 +214,10 @@ public class IsiLangParser extends Parser {
 			bloco();
 			setState(29);
 			match(T__1);
-			 
+
 			           	 program.setVarTable(symbolTable);
 			           	 program.setComandos(stack.pop());
-			           	 
+
 			           
 			}
 		}
@@ -318,7 +327,7 @@ public class IsiLangParser extends Parser {
 			tipo();
 			setState(39);
 			match(ID);
-			verificaSimboloNaTabSimbolos(_input.LT(-1).getText());
+			 verificaSimboloNaTabSimbolos(_input.LT(-1).getText());
 			setState(46);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
@@ -329,7 +338,7 @@ public class IsiLangParser extends Parser {
 				match(VIR);
 				setState(42);
 				match(ID);
-				verificaSimboloNaTabSimbolos(_input.LT(-1).getText());
+				 verificaSimboloNaTabSimbolos(_input.LT(-1).getText());
 				}
 				}
 				setState(48);
@@ -803,10 +812,11 @@ public class IsiLangParser extends Parser {
 			setState(110);
 			match(SC);
 
-			IsiVariable var = (IsiVariable)symbolTable.get(_exprID);
-			var.setValue(_exprContent);
-			CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
-			stack.peek().add(cmd);
+			               	 IsiVariable var = (IsiVariable)symbolTable.get(_exprID);
+			              	 var.setValue(_exprContent);
+			               	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
+			               	 stack.peek().add(cmd);
+			               
 			}
 		}
 		catch (RecognitionException re) {
@@ -889,7 +899,7 @@ public class IsiLangParser extends Parser {
 			match(FP);
 			setState(122);
 			match(ACH);
-			 curThread = new ArrayList<AbstractCommand>(); 
+			 curThread = new ArrayList<AbstractCommand>();
 			                      stack.push(curThread);
 			                    
 			setState(125); 
@@ -909,7 +919,7 @@ public class IsiLangParser extends Parser {
 			setState(129);
 			match(FCH);
 
-			                       listaTrue = stack.pop();	
+			                       listaTrue = stack.pop();
 			                    
 			setState(142);
 			_errHandler.sync(this);
