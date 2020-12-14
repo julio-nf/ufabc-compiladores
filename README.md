@@ -25,11 +25,11 @@ Possui 2 tipos de variáveis:
 * Aceita números decimais (ok)
 * Verificar se variável foi declarada (ok)
 * Verificar se variável declarada foi ou não usada (ok)
-* Atribuições: verificação de tipos. 
 * A parte de expressões envolvendo os operadores matemáticos deve ser realizada de maneira correta, respeitando a precedência. (ok)
 
 ITENS OPCIONAIS:
 * Um Diagrama de Classes
 * Saida formatada
 * Colocamos tempo de compilação
-* Saida do compilador tbm formatada, entrada do arquivo
+* Saida do compilador tbm formatada
+* Entrada do arquivo
