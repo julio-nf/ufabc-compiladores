@@ -7,6 +7,8 @@ import src.br.com.ufabc.isilanguage.exceptions.IsiSemanticException;
 import src.br.com.ufabc.isilanguage.parser.IsiLangLexer;
 import src.br.com.ufabc.isilanguage.parser.IsiLangParser;
 
+import java.util.Scanner;
+
 /* esta é a classe que é responsável por criar a interação com o usuário
  * instanciando nosso parser e apontando para o arquivo fonte
  * 
@@ -18,9 +20,13 @@ public class MainClass {
 		try {
 			IsiLangLexer lexer;
 			IsiLangParser parser;
-			
-			// leio o arquivo "input.isi" e isso é entrada para o Analisador Lexico
-			lexer = new IsiLangLexer(CharStreams.fromFileName("input.isi"));
+			Scanner sc = new Scanner(System.in);
+
+			System.out.print("Entre com o nome do arquivo: ");
+			String fileInput = sc.nextLine();
+
+			// recebe o nome do arquivo "*.isi" e isso é entrada para o Analisador Lexico
+			lexer = new IsiLangLexer(CharStreams.fromFileName(fileInput));
 			
 			// crio um "fluxo de tokens" para passar para o PARSER
 			CommonTokenStream tokenStream = new CommonTokenStream(lexer);
