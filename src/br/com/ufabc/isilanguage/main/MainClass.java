@@ -36,7 +36,7 @@ public class MainClass {
 			
 			parser.prog();
 			
-			System.out.println("*** Iniciando o processo de compilação... ***\n");
+			System.out.println("*** Iniciando o processo de compilacao... ***\n");
 			long tempoInicial = System.currentTimeMillis();
 
 			parser.exibeVariaveis();
@@ -49,7 +49,7 @@ public class MainClass {
 			
 			parser.generateCode();
 			
-			System.out.printf("\n\n*** Compilação finalizada com sucesso em %.3f segundo(s) ***\n", (System.currentTimeMillis() - tempoInicial)  / 1000d);
+			System.out.printf("\n\n*** Compilacao finalizada com sucesso em %.3f segundo(s) ***\n", (System.currentTimeMillis() - tempoInicial)  / 1000d);
 		}
 		catch(IsiSemanticException ex) {
 			System.err.println("Semantic error - "+ex.getMessage());

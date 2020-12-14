@@ -116,13 +116,13 @@ public class IsiLangParser extends Parser {
 		private ArrayList<AbstractCommand> listaTrue;
 		private ArrayList<AbstractCommand> listaFalse;
 		private ArrayList<String> listaNaoUsados;
-		
+
 		public void verificaID(String id) {
 			if (!symbolTable.exists(id)){
 				throw new IsiSemanticException("Symbol "+id+" not declared");
 			}
 		}
-		
+
 		public void exibeVariaveis(){
 			ArrayList<IsiSymbol> ls = symbolTable.getAll();
 			for(IsiSymbol s: ls)
@@ -138,7 +138,7 @@ public class IsiLangParser extends Parser {
 		}
 
 		public boolean verificaInputNumeros(String input) {
-	        return input.matches("[0-9]+");
+	        return input.matches("[0-9()+\\-*/.]");
 		}
 		
 		public void verificaVarsNaoUtilizadas() {
@@ -705,6 +705,8 @@ public class IsiLangParser extends Parser {
 			match(SC);
 
 			              	IsiVariable var = (IsiVariable)symbolTable.get(_readID);
+			              	var.setValue("");
+
 			              	CommandLeitura cmd = new CommandLeitura(_readID, var);
 			              	stack.peek().add(cmd);
 			              
@@ -821,10 +823,6 @@ public class IsiLangParser extends Parser {
 			match(SC);
 
 			               	 IsiVariable var = (IsiVariable)symbolTable.get(_exprID);
-			                 if (var.getType() == IsiVariable.NUMBER && !verificaInputNumeros(_exprContent)) {
-			                    throw new IsiSemanticException
-			                        ("Symbol " + _exprContent + " foi atribúido um valor incompatível com o tipo declarado.");
-			                 }
 			              	 var.setValue(_exprContent);
 			               	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
 			               	 stack.peek().add(cmd);
