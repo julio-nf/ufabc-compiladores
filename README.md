@@ -31,4 +31,5 @@ ITENS OPCIONAIS:
 * Um Diagrama de Classes
 * Saida formatada
 * Colocamos tempo de compilação
-* Saida do compilador tbm formatada, entrada do arquivo
+* Saida do compilador tbm formatada
+* Entrada do arquivo
