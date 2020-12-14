@@ -124,7 +124,7 @@ public class IsiLangParser extends Parser {
 		
 		public void exibeComandos(){
 			for (AbstractCommand c: program.getComandos()){
-				System.out.println(c);
+				System.out.print(c);
 			}
 		}
 		

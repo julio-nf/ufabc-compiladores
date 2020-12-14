@@ -12,9 +12,10 @@ public class MainClass{
 	String  t1;
 	a= _key.nextDouble();
 	b= _key.nextDouble();
-	a = 1+2*3/b;
+	a = 1+2.0*3/b;
 	if (a>b) {
 		System.out.println(a);
+		System.out.println(b);
 	}
 	else {
 		System.out.println(b);

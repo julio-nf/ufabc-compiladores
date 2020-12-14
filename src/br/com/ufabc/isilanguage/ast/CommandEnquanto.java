@@ -25,9 +25,12 @@ public class CommandEnquanto extends AbstractCommand {
 
     @Override
     public String toString() {
-        return "CommandEnquanto{" +
-                "condition='" + condition + '\'' +
-                ", enquantoCommands=" + enquantoCommands +
-                '}';
-    }
+    	StringBuilder bdr = new StringBuilder();
+    	for(AbstractCommand c: enquantoCommands)
+    	{
+    		bdr.append("\t");
+    		bdr.append(c);
+       	}
+        return "Comando de repetição lido com sucesso! [enquanto (" + condition + " ) {\n" +  bdr + "\t}" ;
+}
 }

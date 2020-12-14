@@ -18,7 +18,7 @@ public class CommandLeitura extends AbstractCommand {
 	}
 	@Override
 	public String toString() {
-		return "CommandLeitura [id=" + id + "]";
+		return "Comando de leitura lido com sucesso!" + "[ leia(" + id +"); ]\n";
 	}
 
 }

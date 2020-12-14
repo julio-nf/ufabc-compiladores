@@ -34,8 +34,26 @@ public class CommandDecisao extends AbstractCommand {
 	}
 	@Override
 	public String toString() {
-		return "CommandDecisao [condition=" + condition + ", listaTrue=" + listaTrue + ", listaFalse=" + listaFalse
-				+ "]";
+		StringBuilder ltT = new StringBuilder();
+		StringBuilder ltF = new StringBuilder();
+		
+    	for(AbstractCommand c: listaTrue)
+    	{
+    		ltT.append("\t");
+    		ltT.append(c);
+       	}
+    	
+    	for(AbstractCommand c: listaFalse)
+    	{
+    		ltF.append("\t");
+    		ltF.append(c);
+    	}
+    	
+		
+		
+		return "Comando de decisão lido com sucesso! [if (" + condition + " ) {\n" +  ltT + "\t} " +
+		"else {\n" + ltF + "\t}\n";
+				
 	}
 	
 	

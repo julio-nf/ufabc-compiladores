@@ -14,7 +14,7 @@ public class CommandEscrita extends AbstractCommand {
 	}
 	@Override
 	public String toString() {
-		return "CommandEscrita [id=" + id + "]";
+		return "Comando de escrita lido com sucesso!" + "[ escreva(" + id +"); ]\n";
 	}
 	
 
