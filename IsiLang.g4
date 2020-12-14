@@ -35,13 +35,13 @@ grammar IsiLang;
 	private ArrayList<AbstractCommand> listaTrue;
 	private ArrayList<AbstractCommand> listaFalse;
 	private ArrayList<String> listaNaoUsados;
-	
-	public void verificaID(String id){
+
+	public void verificaID(String id) {
 		if (!symbolTable.exists(id)){
 			throw new IsiSemanticException("Symbol "+id+" not declared");
 		}
 	}
-	
+
 	public void exibeVariaveis(){
 		ArrayList<IsiSymbol> ls = symbolTable.getAll();
 		for(IsiSymbol s: ls)
@@ -49,14 +49,18 @@ grammar IsiLang;
 			System.out.println(s);
 		}
 	}
-	
-	public void exibeComandos(){
+
+	public void exibeComandos() {
 		for (AbstractCommand c: program.getComandos()){
 			System.out.print(c);
 		}
 	}
+
+	public boolean verificaInputNumeros(String input) {
+        return input.matches("[0-9]+");
+	}
 	
-	public void checkUnusedVars() {
+	public void verificaVarsNaoUtilizadas() {
 		listaNaoUsados = new ArrayList<String>();
         for (IsiSymbol is : symbolTable.getAll()) {
         	IsiVariable isiVar = (IsiVariable)is;
@@ -171,6 +175,10 @@ cmdescrita	: 'escreva'
                  FP
                  SC
                {
+                  IsiVariable isiVar = (IsiVariable)symbolTable.get(_writeID);
+                  if (isiVar.getValue() == null) {
+                      throw new IsiSemanticException("Symbol " + _writeID + " não foi inicializado.");
+                  }
                	  CommandEscrita cmd = new CommandEscrita(_writeID);
                	  stack.peek().add(cmd);
                }
@@ -184,6 +192,10 @@ cmdattrib	:  ID { verificaID(_input.LT(-1).getText());
                SC
                {
                	 IsiVariable var = (IsiVariable)symbolTable.get(_exprID);
+                 if (var.getType() == IsiVariable.NUMBER && !verificaInputNumeros(_exprContent)) {
+                    throw new IsiSemanticException
+                        ("Symbol " + _exprContent + " foi atribúido um valor incompatível com o tipo declarado.");
+                 }
               	 var.setValue(_exprContent);
                	 CommandAtribuicao cmd = new CommandAtribuicao(_exprID, _exprContent);
                	 stack.peek().add(cmd);
@@ -228,7 +240,7 @@ expr		:  termo (
 	            )*
 			;
 
-termo		: ID { verificaID(_input.LT(-1).getText());
+termo		: ID {
 	               _exprContent += _input.LT(-1).getText();
                  }
             |
