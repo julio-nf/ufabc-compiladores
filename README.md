@@ -3,14 +3,14 @@
 
 Implementacao da linguagem de programacão imperativa *IsiLanguage*, pela aula de Compiladores da Universidade Federal do ABC, ministrada pelo professor *Francisco Isidro Massetto*.
 
-Os códigos escritos em IsiLanguage são transpilados para C após a execução do compilador. A implementação da linguagem é feita com Java e Antlr4.
+Os códigos escritos em IsiLanguage são transpilados para Java após a execução do compilador. A implementação da linguagem é feita com Java e Antlr4.
 
 O grupo é composto pelos membros:
-- Daniel Cinalli
-- Felipe
-- Julio Novais
-- Kauan Manzato
-- Sergio Pires
+- Daniel Pereira Cinalli - RA 11069711
+- Felipe Neves Fanado - RA 11085813
+- Julio Novais da Fonseca - RA 21073215
+- Kauan Manzato do Nascimento - RA 11201721592
+- Sergio Abilio Pereira Pires Junior - RA 11009513
 
 
 ## Requisitos
